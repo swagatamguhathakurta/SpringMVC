@@ -6,12 +6,9 @@ import java.util.UUID;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Employee.findAll",
-                    query = "SELECT emp from Employee emp ORDER BY emp.email ASC "),
         @NamedQuery(name = "Employee.findByEmail",
                     query = "SELECT emp from Employee emp where emp.email=:pEmail")
 })
-
 public class Employee {
 
     @Id

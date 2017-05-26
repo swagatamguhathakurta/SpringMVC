@@ -41,7 +41,7 @@ public class EmployeeController {
         return service.create(emp);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "{id}",
+    @RequestMapping(method = RequestMethod.PUT, value = "{id}",
                     consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
                     produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Employee update(@PathVariable("id") String empId, @RequestBody Employee emp) {

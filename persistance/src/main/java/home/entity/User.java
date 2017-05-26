@@ -1,18 +1,11 @@
 package home.entity;
 
-
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "Employee.findAll",
-                    query = "SELECT emp from Employee emp ORDER BY emp.email ASC "),
-        @NamedQuery(name = "Employee.findByEmail",
-                    query = "SELECT emp from Employee emp where emp.email=:pEmail")
-})
-
-public class Employee {
+public class User {
 
     @Id
     @Column(columnDefinition = "varchar(36)")
@@ -23,9 +16,21 @@ public class Employee {
 
     @Column(unique = true)
     private String email;
-    private int salary;
 
-    public Employee() {
+    //FOREIGN KEY MAPPING
+    @OneToOne
+    private Address address;
+
+//    @OneToMany
+//    private List<Address> address;
+
+//    @ManyToOne
+//    private Address officeAddress;
+
+//    @ManyToMany
+//    private List<Address> address;
+
+    public User() {
         this.id = UUID.randomUUID().toString();
     }
 
@@ -61,22 +66,22 @@ public class Employee {
         this.email = email;
     }
 
-    public int getSalary() {
-        return salary;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "User{" +
                 "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", salary=" + salary +
+                ", address=" + address +
                 '}';
     }
 }
